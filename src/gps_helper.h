@@ -150,6 +150,7 @@ struct SurveyInStatus {
 	double longitude;             /**< NAN if unknown/not set [deg] */
 	float altitude;               /**< NAN if unknown/not set [m] */
 	uint32_t mean_accuracy;       /**< [mm] */
+        uint32_t obs;                 /**< [number positions used]*/
 	uint32_t duration;            /**< [s] */
 	uint8_t flags;                /**< bit 0: valid, bit 1: active */
 };

@@ -2064,6 +2064,7 @@ GPSDriverUBX::payloadRxDone()
 			status.duration = svin.dur;
 			status.mean_accuracy = svin.meanAcc / 10;
 			status.flags = (svin.valid & 1) | ((svin.active & 1) << 1);
+                        status.obs = svin.obs;
 			surveyInStatus(status);
 
 			if (svin.valid == 1 && svin.active == 0) {
