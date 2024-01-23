@@ -2261,7 +2261,7 @@ GPSDriverUBX::activateRTCMOutput(bool reduce_update_rate)
 		int cfg_valset_msg_size = initCfgValset();
 
 		if (reduce_update_rate) {
-			cfgValset<uint16_t>(UBX_CFG_KEY_RATE_MEAS, 1000, cfg_valset_msg_size);
+			cfgValset<uint16_t>(UBX_CFG_KEY_RATE_MEAS, 2000, cfg_valset_msg_size);
 		}
 
 		cfgValsetPort(UBX_CFG_KEY_MSGOUT_RTCM_3X_TYPE1005_I2C, 5, cfg_valset_msg_size);
