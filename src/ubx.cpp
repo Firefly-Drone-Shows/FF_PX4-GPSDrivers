@@ -2409,14 +2409,19 @@ GPSDriverUBX::payloadRxDone()
 int
 GPSDriverUBX::activateRTCMOutput(bool reduce_update_rate)
 {
+        uint16_t message_rate = 1000;
 	/* For base stations we switch to 1 Hz update rate, which is enough for RTCM output.
 	 * For the survey-in, we still want 5/10 Hz, because this speeds up the process */
-
+        if(_board == Board::u_blox9_F9P_L1L5){
+                message_rate = 2000;
+        } else {
+                message_rate = 1000;
+        }
 	if (_proto_ver_27_or_higher) {
 		int cfg_valset_msg_size = initCfgValset();
 
 		if (reduce_update_rate) {
-			cfgValset<uint16_t>(UBX_CFG_KEY_RATE_MEAS, 1000, cfg_valset_msg_size);
+			cfgValset<uint16_t>(UBX_CFG_KEY_RATE_MEAS, message_rate, cfg_valset_msg_size);
 		}
 
 		cfgValsetPort(UBX_CFG_KEY_MSGOUT_RTCM_3X_TYPE1005_I2C, 5, cfg_valset_msg_size);
