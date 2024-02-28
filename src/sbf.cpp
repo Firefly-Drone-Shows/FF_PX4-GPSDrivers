@@ -525,10 +525,10 @@ int GPSDriverSBF::payloadRxDone()
 			_gps_position->satellites_used = 0;
 		}
 
-		_gps_position->latitude_deg = _buf.payload_pvt_geodetic.latitude * M_RAD_TO_DEG;
-		_gps_position->longitude_deg = _buf.payload_pvt_geodetic.longitude * M_RAD_TO_DEG;
-		_gps_position->altitude_ellipsoid_m = _buf.payload_pvt_geodetic.height;
-		_gps_position->altitude_msl_m = _buf.payload_pvt_geodetic.height - static_cast<double>
+		_gps_position->lat = _buf.payload_pvt_geodetic.latitude * M_RAD_TO_DEG;
+		_gps_position->lon = _buf.payload_pvt_geodetic.longitude * M_RAD_TO_DEG;
+		_gps_position->alt_ellipsoid = _buf.payload_pvt_geodetic.height;
+		_gps_position->alt = _buf.payload_pvt_geodetic.height - static_cast<double>
 						(_buf.payload_pvt_geodetic.undulation);
 
 		/* H and V accuracy are reported in 2DRMS, but based off the uBlox reporting we expect RMS.

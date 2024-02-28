@@ -267,11 +267,11 @@ int GPSDriverNMEA::handleMessage(int len)
 		}
 
 		/* convert from degrees, minutes and seconds to degrees */
-		_gps_position->longitude_deg = int(lon * 0.01) + (lon * 0.01 - int(lon * 0.01)) * 100.0 / 60.0;
-		_gps_position->latitude_deg = int(lat * 0.01) + (lat * 0.01 - int(lat * 0.01)) * 100.0 / 60.0;
+		_gps_position->lon = int(lon * 0.01) + (lon * 0.01 - int(lon * 0.01)) * 100.0 / 60.0;
+		_gps_position->lat = int(lat * 0.01) + (lat * 0.01 - int(lat * 0.01)) * 100.0 / 60.0;
 		_gps_position->hdop = hdop;
-		_gps_position->altitude_msl_m = (double)alt;
-		_gps_position->altitude_ellipsoid_m = (double)(alt + geoid_h);
+		_gps_position->alt = (double)alt;
+		_gps_position->alt_ellipsoid = (double)(alt + geoid_h);
 		_sat_num_gga = static_cast<int>(num_of_sv);
 
 
@@ -393,10 +393,10 @@ int GPSDriverNMEA::handleMessage(int len)
 		}
 
 		/* convert from degrees, minutes and seconds to degrees */
-		_gps_position->latitude_deg = int(lat * 0.01) + (lat * 0.01 - int(lat * 0.01)) * 100.0 / 60.0;
-		_gps_position->longitude_deg = int(lon * 0.01) + (lon * 0.01 - int(lon * 0.01)) * 100.0 / 60.0;
+		_gps_position->lat = int(lat * 0.01) + (lat * 0.01 - int(lat * 0.01)) * 100.0 / 60.0;
+		_gps_position->lon = int(lon * 0.01) + (lon * 0.01 - int(lon * 0.01)) * 100.0 / 60.0;
 		_gps_position->hdop = hdop;
-		_gps_position->altitude_msl_m = (double)alt;
+		_gps_position->alt = (double)alt;
 		_sat_num_gns = static_cast<int>(num_of_sv);
 
 		if (!_POS_received && (_last_POS_timeUTC < utc_time)) {
@@ -484,8 +484,8 @@ int GPSDriverNMEA::handleMessage(int len)
 		float velocity_east  = velocity_ms * sinf(track_rad);
 
 		/* convert from degrees, minutes and seconds to degrees */
-		_gps_position->latitude_deg = int(lat * 0.01) + (lat * 0.01 - int(lat * 0.01)) * 100.0 / 60.0;
-		_gps_position->longitude_deg = int(lon * 0.01) + (lon * 0.01 - int(lon * 0.01)) * 100.0 / 60.0;
+		_gps_position->lat = int(lat * 0.01) + (lat * 0.01 - int(lat * 0.01)) * 100.0 / 60.0;
+		_gps_position->lon = int(lon * 0.01) + (lon * 0.01 - int(lon * 0.01)) * 100.0 / 60.0;
 
 		_gps_position->vel_m_s = velocity_ms;
 		_gps_position->vel_n_m_s = velocity_north;

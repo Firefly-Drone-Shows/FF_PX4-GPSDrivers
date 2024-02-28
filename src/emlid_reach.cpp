@@ -285,10 +285,10 @@ GPSDriverEmlidReach::handleErbSentence()
 		_gps_position->timestamp = gps_absolute_time();
 
 		_last_POS_timeGPS = _erb_buff.payload.geodic_position.timeGPS;
-		_gps_position->longitude_deg = _erb_buff.payload.geodic_position.longitude;
-		_gps_position->latitude_deg = _erb_buff.payload.geodic_position.latitude;
-		_gps_position->altitude_ellipsoid_m = _erb_buff.payload.geodic_position.altElipsoid;
-		_gps_position->altitude_msl_m = _erb_buff.payload.geodic_position.altMeanSeaLevel;
+		_gps_position->lon = _erb_buff.payload.geodic_position.longitude;
+		_gps_position->lat = _erb_buff.payload.geodic_position.latitude;
+		_gps_position->alt_ellipsoid = _erb_buff.payload.geodic_position.altElipsoid;
+		_gps_position->alt = _erb_buff.payload.geodic_position.altMeanSeaLevel;
 
 		_rate_count_lat_lon++;
 
